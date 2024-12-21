@@ -1,0 +1,4 @@
+#logging:
+#  level:
+#    com.thinkinnovative.demo_gradle: DEBUG
+#    root: DEBUG
