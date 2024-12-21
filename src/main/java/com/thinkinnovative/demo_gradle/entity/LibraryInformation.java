@@ -9,7 +9,7 @@ public class LibraryInformation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "bookid")
-    private Long bookID;
+    private Integer bookID;
     @Column(name = "title")
     private String title;
     @Column(name = "author")
@@ -52,11 +52,11 @@ public class LibraryInformation {
         this.status = status;
     }
 
-    public Long getBookID() {
+    public Integer getBookID() {
         return bookID;
     }
 
-    public void setBookID(Long bookID) {
+    public void setBookID(Integer bookID) {
         this.bookID = bookID;
     }
 

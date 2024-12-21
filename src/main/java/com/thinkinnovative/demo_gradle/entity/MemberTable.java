@@ -11,7 +11,7 @@ public class MemberTable {
 
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
-        private Long memberID;
+        private Integer memberID;
 
         @Column(name = "member_name", nullable = false)
         private String memberName;
@@ -20,13 +20,13 @@ public class MemberTable {
         private LocalDate membershipDate;
 
     @OneToMany(mappedBy = "member")
-    private List<BorrowTable> borrowRecords;
+    private List<BorrowTable1> borrowRecords;
 
     public MemberTable() {
 
     }
 
-    public MemberTable(Long memberID, String memberName, LocalDate membershipDate, List<BorrowTable> borrowRecords) {
+    public MemberTable(Integer memberID, String memberName, LocalDate membershipDate, List<BorrowTable1> borrowRecords) {
         this.memberID = memberID;
         this.memberName = memberName;
         this.membershipDate = membershipDate;
@@ -35,11 +35,11 @@ public class MemberTable {
 
     // Getters and Setters
 
-    public Long getMemberID() {
+    public Integer getMemberID() {
         return memberID;
     }
 
-    public void setMemberID(Long memberID) {
+    public void setMemberID(Integer memberID) {
         this.memberID = memberID;
     }
 
@@ -59,11 +59,11 @@ public class MemberTable {
         this.membershipDate = membershipDate;
     }
 
-    public List<BorrowTable> getBorrowRecords() {
+    public List<BorrowTable1> getBorrowRecords() {
         return borrowRecords;
     }
 
-    public void setBorrowRecords(List<BorrowTable> borrowRecords) {
+    public void setBorrowRecords(List<BorrowTable1> borrowRecords) {
         this.borrowRecords = borrowRecords;
     }
 
