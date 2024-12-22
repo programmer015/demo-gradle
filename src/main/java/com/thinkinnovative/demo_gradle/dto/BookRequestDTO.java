@@ -4,6 +4,19 @@ public class BookRequestDTO {
     private Integer bookID;
     private String title;
     private String author;
+    private String genre;
+    private Integer publishedYear;
+    private Long statusId;
+    private Integer stock;
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
 
     public String getGenre() {
         return genre;
@@ -53,7 +66,5 @@ public class BookRequestDTO {
         this.statusId = statusId;
     }
 
-    private String genre;
-    private Integer publishedYear;
-    private Long statusId;
+
 }

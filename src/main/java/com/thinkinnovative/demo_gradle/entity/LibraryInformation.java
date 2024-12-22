@@ -21,6 +21,17 @@ public class LibraryInformation {
     @ManyToOne
     @JoinColumn(name = "status_id", referencedColumnName = "statusID")
     private StatusTable status;
+    @Column(name = "stock", nullable = false, columnDefinition = "INTEGER DEFAULT 0")
+    private Integer stock = 0;
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+
     //    public Long getStatusID() {
 //        return statusID;
 //    }

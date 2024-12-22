@@ -55,6 +55,8 @@ public class LibraryController  {
         libraryInformation.setGenre(bookRequestDTO.getGenre());
         libraryInformation.setTitle(bookRequestDTO.getTitle());
         libraryInformation.setPublishedYear(bookRequestDTO.getPublishedYear());
+        libraryInformation.setStock(bookRequestDTO.getStock());
+        libraryInformation.setStock(bookRequestDTO.getStock());
         libraryRepository.save(libraryInformation);
         return ResponseEntity.ok("Book added successfully");
     }
