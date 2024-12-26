@@ -2,6 +2,8 @@ package com.thinkinnovative.demo_gradle.repository;
 
 import com.thinkinnovative.demo_gradle.dto.BookDTO;
 import com.thinkinnovative.demo_gradle.entity.LibraryInformation;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -24,6 +26,15 @@ public interface LibraryRepository extends JpaRepository <LibraryInformation, Lo
             "FROM LibraryInformation l " +
             "JOIN l.status s WHERE l.bookID = :bookID")
     BookDTO findBookById(@Param("bookID") Integer bookID);
+
+    @Query("SELECT new com.thinkinnovative.demo_gradle.dto.BookDTO(" +
+            "l.bookID, l.title, l.author, l.genre, l.publishedYear, " +
+            "s.statusID, s.statusName) " +   // Perform JOIN on status_id
+            "FROM LibraryInformation l " +
+            "JOIN l.status s")
+    Page<BookDTO> getBookByPage(Pageable pageable);
+
+
 
 
 //    @Modifying

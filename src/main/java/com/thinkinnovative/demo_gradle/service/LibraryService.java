@@ -2,6 +2,7 @@ package com.thinkinnovative.demo_gradle.service;
 
 import com.thinkinnovative.demo_gradle.dto.BookDTO;
 import com.thinkinnovative.demo_gradle.entity.LibraryInformation;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -17,4 +18,5 @@ public interface LibraryService {
     public String saveBooks( List<LibraryInformation> libraryInformation);
     public List<BookDTO> getAllBooksWithStatus();
     public BookDTO getBookById(Integer id);
+    public Page<BookDTO>getBookByPage(int page, int size);
 }

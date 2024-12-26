@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
@@ -89,9 +90,16 @@ public class BorrowTable1ServiceImpl implements BorrowTable1Service {
         IncreasedStock.setStock(IncreasedStock.getStock()+1);
         borrowTable1Repository.save(borrowTable1);
         libraryRepository.save(IncreasedStock);
+        LocalDate borrowedDate = borrowTable1.getBorrowDate();
+        LocalDate today = LocalDate.now();
+        long daysBorrowed = ChronoUnit.DAYS.between(borrowedDate, today);
+        int allowedDays = 14; // Example: 14 days allowed borrowing
+        double lateFee = 0;
+        if (daysBorrowed > allowedDays) {
+            lateFee = (daysBorrowed - allowedDays) * 2; // Example: 2 currency units per day
+        }
 
-
-        return "The book is returned successfully";
+        return "The book is returned successfully. Please pay the late fee"+lateFee;
     }
 
 //

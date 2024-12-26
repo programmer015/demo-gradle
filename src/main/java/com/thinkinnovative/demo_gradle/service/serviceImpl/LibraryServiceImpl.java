@@ -5,6 +5,8 @@ import com.thinkinnovative.demo_gradle.entity.LibraryInformation;
 import com.thinkinnovative.demo_gradle.repository.LibraryRepository;
 import com.thinkinnovative.demo_gradle.service.LibraryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,6 +49,10 @@ public class LibraryServiceImpl implements LibraryService {
         return libraryRepository.findBookById(id);
     }
 
+    @Override
+    public Page<BookDTO> getBookByPage(int page, int size) {
+        return libraryRepository.getBookByPage(PageRequest.of(page, size));
+    }
 
 
     @Override
