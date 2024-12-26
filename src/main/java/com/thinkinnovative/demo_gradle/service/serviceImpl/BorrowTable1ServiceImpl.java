@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -48,7 +49,7 @@ public class BorrowTable1ServiceImpl implements BorrowTable1Service {
 
 
             borrowTable1.setBook(library.get());
-            Optional<MemberTable> member = memberRepository.findById(Long.valueOf(borrowTable1DTO.getMemberId()));
+            Optional<MemberTable> member = memberRepository.findById(borrowTable1DTO.getMemberId());
             if (member.isEmpty()) {
                 return "Member with ID " + borrowTable1DTO.getMemberId() + " not found.";
             }
@@ -67,4 +68,31 @@ public class BorrowTable1ServiceImpl implements BorrowTable1Service {
             return "An error occurred while borrowing the book: " + e.getMessage();
         }
     }
+
+
+    @Override
+    public List<BorrowTable1DTO> borrowBookByMember(Integer memberID) {
+        //borrowTable1Repository.findBooksBorrowedByMember(memberID);
+        return borrowTable1Repository.findBooksBorrowedByMember(memberID);
+    }
+
+    @Override
+    public BorrowTable1 findBooksByBookidAndMemberid(Integer bookid, Integer memberId) {
+        return borrowTable1Repository.findByBookIdAndMemberId(bookid,memberId);
+    }
+
+    @Override
+    public String returnBook(BorrowTable1 borrowTable1) {
+        //BorrowTable1 borrowTable1 = new BorrowTable1();
+        borrowTable1.setReturnDate(LocalDate.now());
+        LibraryInformation IncreasedStock = borrowTable1.getBook();
+        IncreasedStock.setStock(IncreasedStock.getStock()+1);
+        borrowTable1Repository.save(borrowTable1);
+        libraryRepository.save(IncreasedStock);
+
+
+        return "The book is returned successfully";
+    }
+
+//
 }

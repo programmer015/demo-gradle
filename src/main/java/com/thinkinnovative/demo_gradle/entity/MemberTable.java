@@ -32,6 +32,11 @@ public class MemberTable {
         this.membershipDate = membershipDate;
         this.borrowRecords = borrowRecords;
     }
+    public MemberTable(Integer memberID, String memberName, LocalDate membershipDate) {
+        this.memberID = memberID;
+        this.memberName = memberName;
+        this.membershipDate = membershipDate;
+    }
 
     // Getters and Setters
 

@@ -5,10 +5,7 @@ import com.thinkinnovative.demo_gradle.entity.MemberTable;
 import com.thinkinnovative.demo_gradle.repository.MemberRepository;
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 
@@ -31,5 +28,11 @@ public class MemberController {
         memberTable.setMembershipDate(LocalDate.now());
         memberRepository.save(memberTable);
         return ResponseEntity.ok("Member added succedsfully in library");
+    }
+
+    @GetMapping("/getMember")
+    public ResponseEntity<?>getMember()
+    {
+        return ResponseEntity.ok(memberRepository.findAllMembers());
     }
 }
