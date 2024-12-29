@@ -1,6 +1,5 @@
 package com.thinkinnovative.demo_gradle.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 @Entity
@@ -23,6 +22,18 @@ public class LibraryInformation {
     private StatusTable status;
     @Column(name = "stock", nullable = false, columnDefinition = "INTEGER DEFAULT 0")
     private Integer stock = 0;
+   @ManyToOne
+   @JoinColumn(name = "in_queue", nullable = false, referencedColumnName = "queue_id")
+   private Queue inqueue;
+
+    public Queue getInqueue() {
+        return inqueue;
+    }
+
+    public void setInqueue(Queue inqueue) {
+        this.inqueue = inqueue;
+    }
+
     public Integer getStock() {
         return stock;
     }
@@ -47,13 +58,15 @@ public class LibraryInformation {
     public LibraryInformation() {
     }
 
-    public LibraryInformation( String title, String author, String genre, Integer publishedYear, StatusTable status) {
+    public LibraryInformation( String title, String author, String genre, Integer publishedYear, StatusTable status, Queue inqueue) {
         //this.bookID = bookID;
         this.title = title;
         this.author = author;
         this.genre = genre;
         this.publishedYear = publishedYear;
         this.status = status;
+        this.inqueue = inqueue;
+
     }
     public StatusTable getStatus() {
         return status;

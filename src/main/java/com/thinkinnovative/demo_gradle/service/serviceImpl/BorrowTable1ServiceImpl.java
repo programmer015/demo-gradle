@@ -44,6 +44,8 @@ public class BorrowTable1ServiceImpl implements BorrowTable1Service {
             LibraryInformation library1 = library.get();
             // Check stock availability
             if (library1.getStock() <= 0) {
+
+                //queueservice.addQueue();
                 return "The book with ID " + borrowTable1DTO.getBookId() + " is out of stock.";
 
             }

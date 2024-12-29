@@ -1,5 +1,7 @@
 package com.thinkinnovative.demo_gradle.dto;
 
+import com.thinkinnovative.demo_gradle.entity.Queue;
+
 public class BookDTO {
     private Integer bookID;
     private String title;
@@ -9,6 +11,16 @@ public class BookDTO {
     private Long statusId;   // Add statusId field
     private String statusName; // Add statusName field
 
+//    public Queue getInqueue() {
+//        return inqueue;
+//    }
+//
+//    public void setInqueue(Queue inqueue) {
+//        this.inqueue = inqueue;
+//    }
+
+    //private Queue inqueue;
+
     public BookDTO(Integer bookID, String title, String author, String genre, Integer publishedYear, Long statusId, String statusName) {
         this.bookID = bookID;
         this.title = title;
@@ -17,6 +29,7 @@ public class BookDTO {
         this.publishedYear = publishedYear;
         this.statusId = statusId;
         this.statusName = statusName;
+       //this.inqueue = inqueue;
     }
 
     public Integer getBookID() {
