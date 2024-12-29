@@ -22,6 +22,7 @@ public class Queue {
         //this.queue_id = queue_id;
         this.member_id = member_id;
         this.position = position;
+
     }
 
     public Queue() {
