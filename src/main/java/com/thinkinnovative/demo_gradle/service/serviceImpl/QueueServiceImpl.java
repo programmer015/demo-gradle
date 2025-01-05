@@ -36,6 +36,7 @@ public class QueueServiceImpl implements QueueService {
         if(library == null)
         {
             return "Book not found";
+            
         }
 
 //         If the book does not have a queue, create one
