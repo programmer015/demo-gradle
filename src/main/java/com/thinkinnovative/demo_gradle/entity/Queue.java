@@ -22,6 +22,7 @@ public class Queue {
     private  LibraryInformation libraryInformation;
     public LibraryInformation getLibraryInformation() {
         return libraryInformation;
+
     }
 
     public void setLibraryInformation(LibraryInformation libraryInformation) {
