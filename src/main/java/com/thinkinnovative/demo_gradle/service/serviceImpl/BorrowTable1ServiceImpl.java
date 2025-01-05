@@ -22,11 +22,13 @@ public class BorrowTable1ServiceImpl implements BorrowTable1Service {
     LibraryRepository libraryRepository;
     BorrowTable1Repository borrowTable1Repository;
     MemberRepository memberRepository;
+    QueueServiceImpl queueService;
     @Autowired
-    public BorrowTable1ServiceImpl(LibraryRepository libraryRepository, BorrowTable1Repository borrowTable1Repository, MemberRepository memberRepository) {
+    public BorrowTable1ServiceImpl(LibraryRepository libraryRepository, BorrowTable1Repository borrowTable1Repository, MemberRepository memberRepository, QueueServiceImpl queueService) {
         this.libraryRepository = libraryRepository;
         this.borrowTable1Repository = borrowTable1Repository;
         this.memberRepository = memberRepository;
+        this.queueService = queueService;
     }
 
 
@@ -45,8 +47,8 @@ public class BorrowTable1ServiceImpl implements BorrowTable1Service {
             // Check stock availability
             if (library1.getStock() <= 0) {
 
-                //queueservice.addQueue();
-                return "The book with ID " + borrowTable1DTO.getBookId() + " is out of stock.";
+
+                return "The book with ID " + borrowTable1DTO.getBookId() + " is out of stock."+queueService.addQueue(borrowTable1DTO.getBookId(), borrowTable1DTO.getMemberId());
 
             }
 

@@ -2,6 +2,8 @@ package com.thinkinnovative.demo_gradle.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="library_information")
 public class LibraryInformation {
@@ -22,15 +24,14 @@ public class LibraryInformation {
     private StatusTable status;
     @Column(name = "stock", nullable = false, columnDefinition = "INTEGER DEFAULT 0")
     private Integer stock = 0;
-   @ManyToOne
-   @JoinColumn(name = "in_queue", nullable = false, referencedColumnName = "queue_id")
-   private Queue inqueue;
+    @OneToMany(mappedBy = "libraryInformation", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Queue> inqueue;
 
-    public Queue getInqueue() {
+    public List<Queue> getInqueue() {
         return inqueue;
     }
 
-    public void setInqueue(Queue inqueue) {
+    public void setInqueue(List<Queue> inqueue) {
         this.inqueue = inqueue;
     }
 
@@ -58,7 +59,7 @@ public class LibraryInformation {
     public LibraryInformation() {
     }
 
-    public LibraryInformation( String title, String author, String genre, Integer publishedYear, StatusTable status, Queue inqueue) {
+    public LibraryInformation( String title, String author, String genre, Integer publishedYear, StatusTable status, List<Queue> inqueue) {
         //this.bookID = bookID;
         this.title = title;
         this.author = author;

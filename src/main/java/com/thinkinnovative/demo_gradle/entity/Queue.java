@@ -17,11 +17,24 @@ public class Queue {
 
     @Column(name = "position")
     private Integer position;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "book_id", referencedColumnName = "bookid")
+    private  LibraryInformation libraryInformation;
+    public LibraryInformation getLibraryInformation() {
+        return libraryInformation;
+    }
 
-    public Queue( Integer member_id, Integer position) {
+    public void setLibraryInformation(LibraryInformation libraryInformation) {
+        this.libraryInformation = libraryInformation;
+    }
+
+
+
+    public Queue( Integer member_id, Integer position, LibraryInformation libraryInformation) {
         //this.queue_id = queue_id;
         this.member_id = member_id;
         this.position = position;
+        this.libraryInformation = libraryInformation;
 
     }
 
