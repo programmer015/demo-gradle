@@ -2,6 +2,7 @@ package com.thinkinnovative.demo_gradle.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,7 +26,7 @@ public class LibraryInformation {
     @Column(name = "stock", nullable = false, columnDefinition = "INTEGER DEFAULT 0")
     private Integer stock = 0;
     @OneToMany(mappedBy = "libraryInformation", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Queue> inqueue;
+    private List<Queue> inqueue ;
 
     public List<Queue> getInqueue() {
         return inqueue;

@@ -1,6 +1,7 @@
 package com.thinkinnovative.demo_gradle.service.serviceImpl;
 
 import com.thinkinnovative.demo_gradle.dto.BookDTO;
+import com.thinkinnovative.demo_gradle.dto.QueueDTO;
 import com.thinkinnovative.demo_gradle.entity.LibraryInformation;
 import com.thinkinnovative.demo_gradle.entity.Queue;
 import com.thinkinnovative.demo_gradle.repository.LibraryRepository;
@@ -36,7 +37,7 @@ public class QueueServiceImpl implements QueueService {
         if(library == null)
         {
             return "Book not found";
-            
+
         }
 
 //         If the book does not have a queue, create one
@@ -87,5 +88,10 @@ public class QueueServiceImpl implements QueueService {
         return "You have been added to the queue with position "+newPosition;
 
 
+    }
+
+    @Override
+    public List<QueueDTO> queueByBookid(Integer bookID) {
+        return queueRepository.findByQueueIdOrderByAsec(bookID);
     }
 }
