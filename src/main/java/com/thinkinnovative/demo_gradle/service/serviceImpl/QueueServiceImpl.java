@@ -67,6 +67,8 @@ public class QueueServiceImpl implements QueueService {
            // queue = new ArrayList<Queue>();
             queue.add(newQueue);
         library.setInqueue(queue);
+
+
             libraryRepository.save(library);
 
 
