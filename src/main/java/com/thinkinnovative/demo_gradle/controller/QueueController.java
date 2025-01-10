@@ -25,10 +25,10 @@ public class QueueController {
     }
 
     @PostMapping("/bymember")
-    public List<QueueDTO> queuebybookmember(@RequestBody Map<String, Integer> request)
+    public List<QueueDTO> queuebybookid(@RequestBody Map<String, Integer> request)
     {
-        Integer bookid = request.get("bookid");
-        return queue.queueByBookid(bookid);
+        Integer bookID = request.get("bookid");
+        return queue.queueByBookid(bookID);
     }
 
 //    public QueueController(QueueService queue) {

@@ -11,13 +11,13 @@ public class Queue {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "queue_id")
     private Integer queue_id;
-    @Column(name = "member_id")
+
     private Integer member_id;
 
 
     @Column(name = "position")
     private Integer position;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "book_id", referencedColumnName = "bookid")
     private  LibraryInformation libraryInformation;
     public LibraryInformation getLibraryInformation() {

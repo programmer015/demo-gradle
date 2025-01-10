@@ -6,6 +6,7 @@ import com.thinkinnovative.demo_gradle.dto.MemberListDTO;
 import com.thinkinnovative.demo_gradle.entity.MemberTable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,6 +17,14 @@ public interface MemberRepository extends JpaRepository<MemberTable, Integer>{
             "m.memberID, m.memberName, m.membershipDate) " +
             "FROM MemberTable m")
     List<MemberListDTO> findAllMembers();
+
+    @Query("SELECT new com.thinkinnovative.demo_gradle.dto.MemberListDTO(" +
+            "m.memberID, m.memberName, m.membershipDate) " +
+            "FROM MemberTable m WHERE m.memberID = :memberID")
+    MemberListDTO findByMemberID(@Param("memberID") Integer memberId);
+
+
+
 
 
 }

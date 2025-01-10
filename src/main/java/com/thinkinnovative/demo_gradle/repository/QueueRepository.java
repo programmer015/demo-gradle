@@ -17,6 +17,15 @@ public interface QueueRepository extends JpaRepository <Queue, Integer> {
                  "FROM Queue q WHERE q.libraryInformation.bookID = :bookID")
     List<QueueDTO> findByQueueIdOrderByAsec(@Param("bookID") Integer bookID);
 
+    @Query("SELECT new com.thinkinnovative.demo_gradle.dto.QueueDTO(" +
+            "q.queue_id, q.member_id, m.memberName, q.position) " +
+            "FROM Queue q " +
+            "JOIN MemberTable m ON q.member_id = m.memberID " +
+            "WHERE q.libraryInformation.bookID = :bookID " +
+            "ORDER BY q.position ASC")
+    List<QueueDTO> findQueueWithMemberNameByBookID(@Param("bookID") Integer bookID);
+
+
 
     //List<QueueDTO> findByQueueIdOrderByAsec(@Param("bookID") Integer bookID);
 

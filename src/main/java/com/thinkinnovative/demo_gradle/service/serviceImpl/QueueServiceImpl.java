@@ -1,10 +1,13 @@
 package com.thinkinnovative.demo_gradle.service.serviceImpl;
 
 import com.thinkinnovative.demo_gradle.dto.BookDTO;
+import com.thinkinnovative.demo_gradle.dto.MemberListDTO;
 import com.thinkinnovative.demo_gradle.dto.QueueDTO;
 import com.thinkinnovative.demo_gradle.entity.LibraryInformation;
+import com.thinkinnovative.demo_gradle.entity.MemberTable;
 import com.thinkinnovative.demo_gradle.entity.Queue;
 import com.thinkinnovative.demo_gradle.repository.LibraryRepository;
+import com.thinkinnovative.demo_gradle.repository.MemberRepository;
 import com.thinkinnovative.demo_gradle.repository.QueueRepository;
 import com.thinkinnovative.demo_gradle.service.QueueService;
 import jakarta.transaction.Transactional;
@@ -19,10 +22,12 @@ public class QueueServiceImpl implements QueueService {
 
 
     private final LibraryRepository libraryRepository;
+    private final MemberRepository memberRepository;
 
     @Autowired
-    public QueueServiceImpl(LibraryRepository libraryRepository, QueueRepository queueRepository) {
+    public QueueServiceImpl(LibraryRepository libraryRepository, MemberRepository memberRepository, QueueRepository queueRepository) {
         this.libraryRepository = libraryRepository;
+        this.memberRepository = memberRepository;
         this.queueRepository = queueRepository;
     }
 
@@ -32,6 +37,8 @@ public class QueueServiceImpl implements QueueService {
     @Transactional
     public String addQueue(Integer bookId, Integer memberId) {
 
+
+        //MemberListDTO memberTable = memberRepository.findByMemberID(memberId);
         //Find the book
         LibraryInformation library = libraryRepository.findBook1ById(bookId);
         if(library == null)
@@ -92,6 +99,7 @@ public class QueueServiceImpl implements QueueService {
 
     @Override
     public List<QueueDTO> queueByBookid(Integer bookID) {
-        return queueRepository.findByQueueIdOrderByAsec(bookID);
+      // queueRepository.findQueueWithMemberNameByBookID(bookID);
+        return queueRepository.findQueueWithMemberNameByBookID(bookID);
     }
 }
