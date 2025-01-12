@@ -32,4 +32,11 @@ public class LibraryDTO {
     private LocalTime branchClosingTime;
     private Integer branchYear;
 
+    //Department fields
+    //private Integer department_id;
+    private String departmentName;      // Maps to department_name
+    private String departmentCode;      // Maps to department_code
+    private Integer bookNumbers;        // Maps to book_number
+    //private Integer branchId;
+
 }

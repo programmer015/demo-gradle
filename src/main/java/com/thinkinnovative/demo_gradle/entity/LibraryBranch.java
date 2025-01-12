@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 
 import java.time.Duration;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -23,7 +25,7 @@ public class LibraryBranch {
     @Column(name = "branch_code")
     private String branch_code;
 
-    @Column(name = "branch_name ")
+    @Column(name = "branch_name")
     private String branch_name;
 
     @Column(name = "branch_address")
@@ -39,6 +41,9 @@ public class LibraryBranch {
     private Integer hours;
     @Column(name = "year")
     private Integer year;
+
+//    @OneToMany(mappedBy = "branch",  cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Department> department = new ArrayList<>();
 
     @PrePersist
     @PreUpdate
