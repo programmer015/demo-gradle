@@ -20,16 +20,16 @@ import java.util.List;
 public class LibraryBranch {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer branch_id;
+    private Integer branchId;
 
     @Column(name = "branch_code")
-    private String branch_code;
+    private String branchCode;
 
     @Column(name = "branch_name")
-    private String branch_name;
+    private String branchName;
 
     @Column(name = "branch_address")
-    private String branch_address;
+    private String branchAddress;
 
     @Column(name = "open_time")
     private LocalTime openingTime;

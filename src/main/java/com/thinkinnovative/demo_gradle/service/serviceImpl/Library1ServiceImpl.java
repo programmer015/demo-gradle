@@ -32,9 +32,9 @@ public class Library1ServiceImpl {
         try {
             // Create and save LibraryBranch
             LibraryBranch branch = LibraryBranch.builder()
-                    .branch_code(dto.getBranchCode())
-                    .branch_name(dto.getBranchName())
-                    .branch_address(dto.getBranchAddress())
+                    .branchCode(dto.getBranchCode())
+                    .branchName(dto.getBranchName())
+                    .branchAddress(dto.getBranchAddress())
                     .openingTime(dto.getBranchOpeningTime())
                     .closingTime(dto.getBranchClosingTime())
                     .year(dto.getBranchYear())
@@ -45,8 +45,8 @@ public class Library1ServiceImpl {
 
             // Create and save Department
             Department department = Department.builder()
-                    .department_name(dto.getDepartmentName())
-                    .department_code(dto.getDepartmentCode())
+                    .departmentName(dto.getDepartmentName())
+                    .departmentCode(dto.getDepartmentCode())
                     .bookNumbers(dto.getBookNumbers())
                     .branch(savedBranch)
                     .build();

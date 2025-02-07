@@ -15,13 +15,13 @@ import lombok.NoArgsConstructor;
 public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer department_id;
+    private Integer departmentId;
 
     @Column(name = "department_name")
-    private String department_name;
+    private String departmentName;
 
     @Column(name = "department_code")
-    private String department_code;
+    private String departmentCode;
 
     @Column(name = "book_number")
     private Integer bookNumbers;
