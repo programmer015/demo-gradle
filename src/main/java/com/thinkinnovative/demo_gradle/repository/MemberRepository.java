@@ -23,8 +23,17 @@ public interface MemberRepository extends JpaRepository<MemberTable, Integer>{
             "FROM MemberTable m WHERE m.memberID = :memberID")
     MemberListDTO findByMemberID(@Param("memberID") Integer memberId);
 
+    @Query("SELECT m FROM MemberTable m WHERE m.memberID = :memberID")
+    MemberTable findMemberEntityByID(@Param("memberID") Integer memberId);
+
+    @Query("SELECT m FROM MemberTable m WHERE m.email = :email")
+    MemberTable findMemberEntityByEmail(@Param("email") String email);
+
+
+
 
 
 
 
 }
+
