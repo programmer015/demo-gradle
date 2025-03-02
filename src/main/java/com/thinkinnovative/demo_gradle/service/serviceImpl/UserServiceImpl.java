@@ -20,6 +20,7 @@ public class UserServiceImpl {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private final MemberRepository memberRepository;
+    private final PasswordHashServiceImpl passwordHashService;
 
 
     public User registerUser(AuthRequestDTO request) {
@@ -27,7 +28,7 @@ public class UserServiceImpl {
         MemberTable  memberTable = memberRepository.findMemberEntityByID(request.getMemberId());
         User user = User.builder()
                 .username(request.getUsername())
-                .password(request.getPassword())
+                .password(passwordHashService.encodePassword(request.getPassword()))
                 .email(request.getEmail())
                 .role(request.getRole())
                 .member(memberTable).build();

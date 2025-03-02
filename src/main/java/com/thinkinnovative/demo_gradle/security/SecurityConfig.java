@@ -24,8 +24,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/auth/register").permitAll()// ✅ Allow public access to /auth
-                        .requestMatchers("/member/addMember").authenticated()
-                        .anyRequest().authenticated()
+                        .requestMatchers("/member/addMember").permitAll()
+                        .requestMatchers("/member/member/upload-excel").permitAll()
+                        .anyRequest().permitAll()
                 );
 
         return http.build();
