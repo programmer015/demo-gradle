@@ -2,23 +2,17 @@ package com.thinkinnovative.demo_gradle.security;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
-import javax.crypto.SecretKey;
 import java.security.Key;
 import java.util.Date;
 
 @Component
 public class JWTUtil {
 
-    // Use a secure key of at least 256 bits
-    private static final String SECRET = "your_secret_key_your_secret_key_your_secret_key"; // Must be at least 32 characters
-    private static final Key SECRET_KEY = Keys.hmacShaKeyFor(SECRET.getBytes());
+    // Secure key of at least 256 bits
+    private static final Key SECRET_KEY = Keys.hmacShaKeyFor("this_is_a_very_secure_and_long_secret_key_123456".getBytes());
 
-
-    //String token = getTokenFromRequest(request);
     public String generateToken(String username) {
         return Jwts.builder()
                 .setSubject(username)
@@ -29,21 +23,30 @@ public class JWTUtil {
     }
 
     public String extractUsername(String token) {
-        // Using the correct method for parsing the JWT token
-        JwtParser jwtParser = Jwts.parser().setSigningKey(SECRET_KEY).build();
+        JwtParser jwtParser = Jwts.parserBuilder().setSigningKey(SECRET_KEY).build();
         return jwtParser.parseClaimsJws(token).getBody().getSubject();
     }
 
     public boolean validateToken(String token) {
-        return  !isTokenExpired(token);
+        try {
+            Jwts.parserBuilder().setSigningKey(SECRET_KEY).build().parseClaimsJws(token);
+            return true;
+        } catch (ExpiredJwtException e) {
+            System.out.println("Token expired: " + e.getMessage());
+        } catch (UnsupportedJwtException e) {
+            System.out.println("Unsupported token: " + e.getMessage());
+        } catch (MalformedJwtException e) {
+            System.out.println("Malformed token: " + e.getMessage());
+        } catch (SignatureException e) {
+            System.out.println("Invalid signature: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Invalid token: " + e.getMessage());
+        }
+        return false;
     }
 
     private boolean isTokenExpired(String token) {
-        return Jwts.parser().setSigningKey(SECRET_KEY).build().parseClaimsJws(token).getBody().getExpiration().before(new Date());
+        JwtParser jwtParser = Jwts.parserBuilder().setSigningKey(SECRET_KEY).build();
+        return jwtParser.parseClaimsJws(token).getBody().getExpiration().before(new Date());
     }
-
-
-
 }
-
-
